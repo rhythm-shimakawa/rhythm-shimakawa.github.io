@@ -254,6 +254,24 @@ footer {
 
 .contact-line { font-size: 0.94rem; }
 
+
+/* ---------- sub page (fellowship) ---------- */
+.page-head { padding: 120px 0 0; }
+.page-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+.page-head .lead { margin-top: 16px; font-size: 0.9rem; }
+.page-head .caveat { margin-top: 8px; color: var(--muted); font-size: 0.8rem; }
+
+.fs { margin: 0 0 24px; }
+.fs-name { font-size: 0.96rem; }
+.fs-spec { color: var(--muted); font-size: 0.84rem; line-height: 1.95; }
+.fs-spec .sep { color: var(--line); margin: 0 6px; }
+
 /* ---------- mobile ---------- */
 @media (max-width: 900px) {
   .rail {
