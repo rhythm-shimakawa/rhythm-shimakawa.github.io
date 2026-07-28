@@ -1,0 +1,293 @@
+/* ---------------------------------------------
+   rhythm-shimakawa.github.io  v4
+   One-page Japandi: hero image + news panel
+--------------------------------------------- */
+:root {
+  --paper: #faf8f4;
+  --panel: #fffdf9;
+  --ink: #26231d;
+  --muted: #8b8272;
+  --faint: #b5ac9b;
+  --line: #e8e2d6;
+  --accent: #a08258;
+  --serif: "EB Garamond", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 2.0;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .25s, text-decoration-color .25s; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+em { font-style: normal; color: var(--muted); }
+
+/* ---------- fixed language toggle ---------- */
+.lang {
+  position: fixed;
+  top: 26px; right: 30px;
+  z-index: 20;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+}
+.lang a, .lang span { text-decoration: none; color: var(--faint); }
+.lang .current { color: var(--accent); }
+.lang a:hover { color: var(--accent); }
+
+/* ---------- side index (desktop) ---------- */
+.rail {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 220px;
+  padding: 42px 0 42px 40px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.rail .mark {
+  font-family: var(--serif);
+  font-size: 1.0rem;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.rail nav { margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; gap: 18px; }
+
+.rail nav a {
+  text-decoration: none;
+  color: var(--faint);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: color .3s;
+}
+
+.rail nav a .no { font-family: var(--serif); font-size: 0.72rem; color: var(--faint); transition: color .3s; }
+.rail nav a .bar { width: 0; height: 1px; background: var(--accent); transition: width .3s; }
+
+.rail nav a:hover, .rail nav a.active { color: var(--ink); }
+.rail nav a:hover .no, .rail nav a.active .no { color: var(--accent); }
+.rail nav a.active .bar { width: 18px; }
+
+.rail .enso {
+  width: 15px; height: 15px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  opacity: .65;
+}
+
+/* ---------- main ---------- */
+.main { margin-left: 220px; padding: 0 32px; }
+
+.col { max-width: 620px; margin: 0 auto; }
+
+/* ---------- hero: big image + news panel ---------- */
+.hero {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-top: 84px;
+}
+
+.hero .art {
+  width: 100%;
+  height: min(66vh, 560px);
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+}
+
+.news-panel {
+  position: relative;
+  width: min(580px, 96%);
+  margin: -72px 8px 0 auto;   /* 画像に少し重ねて右端へ */
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 26px 30px 22px;
+  box-shadow: 0 18px 40px -30px rgba(60, 50, 30, 0.25);
+  scroll-margin-top: 40px;
+}
+
+.news-panel h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 0.98rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.news-panel h2 .no { font-size: 0.72rem; color: var(--accent); }
+
+.news-panel ul {
+  list-style: none;
+  max-height: 292px;             /* 枠内スクロール */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  padding-right: 10px;
+}
+
+.news-panel ul::-webkit-scrollbar { width: 4px; }
+.news-panel ul::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.news-panel ul::-webkit-scrollbar-thumb:hover { background: var(--faint); }
+
+.news-panel li {
+  padding: 8px 2px;
+  font-size: 0.84rem;   /* 区切り線なし: リンク下線が区切りを兼ねる */
+  line-height: 1.7;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.news-panel .t {
+  flex: 1;
+  white-space: nowrap;           /* 1行に収め、あふれは省略記号 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.news-panel .note { flex: none; color: var(--muted); font-size: 0.74rem; }
+
+/* ---------- sections ---------- */
+section { padding: 96px 0 8px; scroll-margin-top: 24px; }
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 34px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+h2 .no { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.1em; }
+
+h3 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  margin: 34px 0 12px;
+}
+
+p { margin-bottom: 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+/* profile bio lines (マーカーなし) */
+ul.bio { list-style: none; margin-bottom: 26px; }
+ul.bio li { padding: 4px 0; }
+ul.bio .name { font-family: var(--serif); font-size: 1.25rem; letter-spacing: 0.06em; }
+ul.bio .kw { color: var(--accent); font-size: 0.88rem; letter-spacing: 0.1em; }
+
+/* link lists: ハイフン風マーカー付き・本文は受賞欄と同サイズ */
+ul.plain { list-style: none; }
+ul.plain li {
+  padding: 5px 0 5px 22px;
+  position: relative;
+  font-size: 0.94rem;
+  line-height: 1.85;
+}
+ul.plain li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 1.0em;
+  width: 10px; height: 1px;
+  background: var(--accent);
+}
+ul.plain .note { color: var(--muted); font-size: 0.82rem; margin-left: 0.8em; }
+
+/* icon-ish link row */
+.linkrow { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 18px; }
+.linkrow a { text-decoration: none; font-size: 0.84rem; letter-spacing: 0.14em; color: var(--muted); }
+.linkrow a::before { content: "— "; color: var(--accent); }
+.linkrow a:hover { color: var(--accent); }
+
+/* timeline rows */
+.row { display: flex; gap: 26px; padding: 8px 0; }
+.row .when { flex: none; width: 8.2em; color: var(--muted); font-size: 0.85rem; }
+.row .what { flex: 1; font-size: 0.94rem; line-height: 1.85; }
+
+/* news: show 5, expand for more */
+details.more summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+}
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::after { content: "＋"; margin-left: 8px; }
+details.more[open] summary::after { content: "−"; }
+details.more[open] summary { opacity: .55; }
+
+/* ---------- footer ---------- */
+footer {
+  padding: 110px 0 90px;
+  color: var(--faint);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+}
+
+.contact-line { font-size: 0.94rem; }
+
+/* ---------- mobile ---------- */
+@media (max-width: 900px) {
+  .rail {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: auto;
+    width: auto;
+    padding: 0;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    flex-direction: row;
+    align-items: center;
+  }
+  .rail .mark { padding: 14px 0 14px 20px; font-size: 0.88rem; }
+  .rail nav {
+    margin: 0 0 0 6px;
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-right: 84px;
+  }
+  .rail nav::-webkit-scrollbar { display: none; }
+  .rail nav a { padding: 14px 11px; flex: none; font-size: 0.72rem; letter-spacing: 0.12em; }
+  .rail nav a .no, .rail nav a .bar { display: none; }
+  .rail .enso { display: none; }
+
+  .lang { top: 0; right: 0; padding: 14px 16px; }
+
+  .main { margin-left: 0; padding: 0 22px; }
+  .hero { padding-top: 66px; }
+  .hero .art { height: 42vh; }
+  .news-panel { width: 100%; margin: 16px 0 0; box-shadow: none; padding: 20px 20px 16px; }
+  section { padding: 72px 0 8px; scroll-margin-top: 64px; }
+  .row { flex-wrap: wrap; gap: 0 16px; }
+  .row .when { width: 100%; }
+}
